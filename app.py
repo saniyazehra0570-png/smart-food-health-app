@@ -28,7 +28,6 @@ calories = df[df["Food"] == food]["Calories"].values[0]
 cat = category(calories)
 
 st.write(f"Calories: {calories}")
-st.write(f"Category: {cat}")
 
 if cat == "High":
     st.warning("⚠️ Eat in moderation")
