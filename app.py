@@ -46,20 +46,15 @@ height = st.number_input("Enter height (meters)", min_value=0.5)
 
 if st.button("Calculate BMI"):
     bmi = bmi_calc(weight, height)
-    st.subheader(f"Your BMI: {bmi:.2f}") 
+    st.subheader(f"Your BMI: {bmi:.2f}")
+
+    # ✅ ONLY ONE BLOCK (fixed)
     if bmi < 18.5:
         st.warning("Underweight - Increase healthy calorie intake 🥗")
     elif bmi < 25:
         st.success("Normal weight - Maintain your lifestyle ✅")
     else:
         st.error("Overweight - Try reducing high-calorie foods and stay active 🏃")
-
-    if bmi < 18.5:
-        st.warning("Underweight")
-    elif bmi < 25:
-        st.success("Normal weight")
-    else:
-        st.error("Overweight")
 
 # DAILY CALORIES
 st.header("🍽 Daily Calorie Counter")
@@ -68,3 +63,6 @@ foods = st.multiselect("Select foods you ate", df["Food"])
 total = df[df["Food"].isin(foods)]["Calories"].sum()
 
 st.write(f"Total Calories: {total}")
+
+
+    
