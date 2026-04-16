@@ -47,7 +47,13 @@ height = st.number_input("Enter height (meters)", min_value=0.5)
 
 if st.button("Calculate BMI"):
     bmi = bmi_calc(weight, height)
-    st.write(f"Your BMI: {bmi:.2f}")
+    st.write(f"Your BMI: {bmi:.2f}") 
+    if bmi < 18.5:
+        st.warning("Underweight - Increase healthy calorie intake 🥗")
+    elif bmi < 25:
+        st.success("Normal weight - Maintain your lifestyle ✅")
+    else:
+        st.error("Overweight - Try reducing high-calorie foods and stay active 🏃")
 
     if bmi < 18.5:
         st.warning("Underweight")
