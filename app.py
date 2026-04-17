@@ -3,6 +3,17 @@ import pandas as pd
 
 # Load data
 df = pd.read_csv("food_data.csv")
+# Food emojis
+food_emoji = {
+    "Rice": "🍚",
+    "Chapati": "🫓",
+    "Pizza": "🍕",
+    "Burger": "🍔",
+    "Apple": "🍎",
+    "Banana": "🍌",
+    "Egg": "🥚",
+    "Milk": "🥛"
+}
 
 # Functions
 def category(cal):
@@ -22,13 +33,16 @@ st.title("🥗 Smart Food & Health Advisor")
 # FOOD SECTION
 st.header("🍔 Food Calorie Checker")
 
-food = st.selectbox("Select Food", df["Food"])
+food = st.selectbox(
+    "Select Food",
+    df["Food"],
+    format_func=lambda x: f"{food_emoji.get(x, '')} {x}"
+)
 
 calories = df[df["Food"] == food]["Calories"].values[0]
 cat = category(calories)
 
-st.write(f"Calories: {calories}")
-
+st.subheader(f"{food_emoji.get(food, '')} {food} → 🔥 {calories} Calories")
 if cat == "High":
     st.warning("⚠️ Eat in moderation")
 elif cat == "Medium":
