@@ -73,10 +73,21 @@ if st.button("Calculate BMI"):
 # DAILY CALORIES
 st.header("🍽 Daily Calorie Counter")
 
-foods = st.multiselect("Select foods you ate", df["Food"])
+foods = st.multiselect(
+    "🍽 Select foods you ate",
+    df["Food"],
+    format_func=lambda x: f"{food_emoji.get(x, '')} {x}"
+)
 total = df[df["Food"].isin(foods)]["Calories"].sum()
 
-st.write(f"Total Calories: {total}")
+st.subheader(f"🔥 Total Calories Consumed: {total}")
+
+if total > 500:
+    st.error("⚠️ High calorie intake today! Stay active 🏃")
+elif total > 200:
+    st.info("⚖️ Moderate intake 👍")
+elif total > 0:
+    st.success("🥗 Healthy eating today! Great job ✅")
 
 
     
