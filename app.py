@@ -43,6 +43,7 @@ calories = df[df["Food"] == food]["Calories"].values[0]
 cat = category(calories)
 
 st.subheader(f"{food_emoji.get(food, '')} {food} → 🔥 {calories} Calories")
+st.caption("⚠️ Calories are approximate and may vary based on portion size.")
 if cat == "High":
     st.warning("⚠️ Eat in moderation")
 elif cat == "Medium":
@@ -81,6 +82,7 @@ foods = st.multiselect(
 total = df[df["Food"].isin(foods)]["Calories"].sum()
 
 st.subheader(f"🔥 Total Calories Consumed: {total}")
+st.caption("⚠️ Total calories are estimated values.")
 
 if total > 500:
     st.error("⚠️ High calorie intake today! Stay active 🏃")
